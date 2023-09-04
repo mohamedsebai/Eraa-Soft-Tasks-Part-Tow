@@ -10,4 +10,10 @@ class City extends Model
     use HasFactory;
 
     protected $fillable = ['city_name'];
+
+
+
+    public function doctors(){
+        return $this->hasMany(Doctor::class);
+    }
 }

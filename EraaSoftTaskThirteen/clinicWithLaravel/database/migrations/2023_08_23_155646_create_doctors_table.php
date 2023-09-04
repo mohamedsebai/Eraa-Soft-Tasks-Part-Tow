@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone');
-            $table->text('summary');
             $table->string('img');
+            $table->text('summary');
             $table->foreignId('city_id')->constrained('cities')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('major_id')->constrained('majors')->onUpdate('cascade')->onDelete('cascade');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

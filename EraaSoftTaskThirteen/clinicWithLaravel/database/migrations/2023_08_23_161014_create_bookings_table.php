@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('email');
             $table->string('phone');
-            $table->string('status');
+            $table->tinyInteger('status')->default(0);
             $table->string('location')->default('eraasoft');
             $table->foreignId('doctor_id')->constrained('doctors')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

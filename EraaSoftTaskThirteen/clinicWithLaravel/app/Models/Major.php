@@ -11,4 +11,14 @@ class Major extends Model
 
     protected $fillable = ['title', 'img'];
 
+
+    public function doctors(){
+        return $this->hasMany(Doctor::class);
+    }
+
+    public function booking()
+    {
+        return $this->hasManyThrough(Booking::class, Doctor::class, 'major_id', 'doctor_id');
+    }
+
 }
