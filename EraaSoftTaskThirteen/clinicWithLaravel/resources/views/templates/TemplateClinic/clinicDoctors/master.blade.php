@@ -6,7 +6,7 @@
 
 @yield('content')
 
-=======
+
 
 @yield('content')
 
