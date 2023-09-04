@@ -14,13 +14,14 @@
                 ?>
 
                 <!-- if there is form_toggle by java script remove to show this form  -->
-                        <form action="" method="POST" class="form_toggle" id="form_toggle">
+                        <form action="{{ route('doctor.rating', $doctor->id) }}" method="POST" class="form_toggle" id="form_toggle" >
+                            @csrf
                             <input type="hidden" name="star_rating_value" id="star_rating_value" >
-                            <input type="submit" value="submiteRate" class="btn btn-warning p-0" name="star_rate">
+                            <input type="submit" value="submiteRate" class="btn btn-warning p-0">
                         </form>
-                        <?php //if(isset($success_rating)): ?>
-                            <span style="color: red"><?php //echo $success_rating; ?></span>
-                        <?php //endif; ?>
+                        @if (session()->has('success_rate'))
+                        <div class="alert alert-success">{{ session()->get('success_rate') }}</div>
+                        @endif
                         <form class="rating" method="post">
                             <input type="radio" id="star5" name="rating" value="5" onclick="postToController(); myFunction();" /><label for="star5" title="Super !!">5</label><span class="fa fa-star" style="color: orange"></span>
                             <input type="radio" id="star4" name="rating" value="4" onclick="postToController(); myFunction();" /><label for="star4" title="Geil">4</label><span class="fa fa-star" style="color: red"></span>
@@ -43,7 +44,7 @@
                                 document.getElementById("star_rating_value").value  = ratingValue;
                             }
                         </script>
-                        <h6 class="card-title fw-bold"><?php // echo $doctor[0]['summary']; ?></h6>
+                        <h6 class="card-title fw-bold">{{ $doctor->summary }}</h6>
                     </div>
                 </div>
 

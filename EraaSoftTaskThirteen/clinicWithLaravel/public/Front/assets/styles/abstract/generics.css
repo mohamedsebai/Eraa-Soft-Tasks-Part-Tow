@@ -30,6 +30,9 @@ body {
     justify-content: space-between;
 }
 
+.form_toggle{
+    display: none;
+}
 .bg-blue {
     background-color: var(--blue-color);
 }

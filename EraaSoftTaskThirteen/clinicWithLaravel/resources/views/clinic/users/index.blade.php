@@ -28,14 +28,21 @@
 
             <div class="d-flex flex-wrap gap-4 justify-content-center">
 
-                <div class="card p-2" style="width: 18rem;">
-                    <img src="{{ url('front/assets/images/major.jpg') }}" class="card-img-top rounded-circle card-image-circle"
-                        alt="major">
-                    <div class="card-body d-flex flex-column gap-1 justify-content-center">
-                        <h4 class="card-title fw-bold text-center">Major title</h4>
-                        <a href="./doctors/index.php" class="btn btn-outline-primary card-button">Browse Doctors</a>
-                    </div>
-                </div>
+                @isset($majors)
+                    @forelse ($majors as $major)
+                        <div class="card p-2" style="width: 18rem;">
+                            <img src="{{ url('admin/assets/images/majors/'. $major->img) }}" class="card-img-top rounded-circle card-image-circle"
+                                alt="major">
+                            <div class="card-body d-flex flex-column gap-1 justify-content-center">
+                                <h4 class="card-title fw-bold text-center">{{ $major->title }}</h4>
+                                <a href="{{ route('front.majors.index') }}" class="btn btn-outline-primary card-button">Browse Doctors</a>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="alert alert-danger">There is no major yet</div>
+                    @endforelse
+                @endisset
+
 
             </div>
 
@@ -43,16 +50,22 @@
 
             <div class="d-flex flex-wrap gap-4 justify-content-center">
 
-                <div class="card p-2" style="width: 18rem;">
-                <img src="{{ url('front/assets/images/major.jpg') }}" class="card-img-top rounded-circle card-image-circle"
-                                    alt="major">
-                <div class="card-body d-flex flex-column gap-1 justify-content-center">
-                    <h4 class="card-title fw-bold text-center">Doctor Name</h4>
-                    <h6 class="card-title fw-bold text-center">Major</h6>
-                    <a href="./doctors/doctor.php" class="btn btn-outline-primary card-button">Book an
-                        appointment</a>
-                </div>
-                </div>
+                @isset($doctors)
+                    @forelse ($doctors as $doctor)
+                    <div class="card p-2" style="width: 18rem;">
+                        <img src="{{ url('admin/assets/images/doctors/' .  $doctor->img  ) }}" class="card-img-top rounded-circle card-image-circle"
+                                            alt="major">
+                        <div class="card-body d-flex flex-column gap-1 justify-content-center">
+                            <h4 class="card-title fw-bold text-center">{{ $doctor->name }}</h4>
+                            <h6 class="card-title fw-bold text-center">{{ $doctor->major->title }}</h6>
+                            <a href="{{ route('front.doctors.show', $doctor->id) }}" class="btn btn-outline-primary card-button">Book an
+                                appointment</a>
+                        </div>
+                    </div>
+                @empty
+                        <div class="alert alert-danger">There is no doctors yet</div>
+                    @endforelse
+                @endisset
 
             </div>
 
@@ -61,7 +74,10 @@
 
             @include('templates.TemplateClinic.clinicUser.qoutes')
 
-    </div>
+        </div>
 
+
+    </div>
     @endsection
+
 
