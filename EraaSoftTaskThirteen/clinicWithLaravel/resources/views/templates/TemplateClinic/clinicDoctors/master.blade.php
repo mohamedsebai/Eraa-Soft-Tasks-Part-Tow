@@ -3,6 +3,11 @@
     <div class="page-wrapper">
         @include('templates.TemplateClinic.clinicDoctors.nav')
 
+
+@yield('content')
+
+=======
+
 @yield('content')
 
 @include('templates.TemplateClinic.clinicDoctors.footer_content')
